@@ -90,32 +90,26 @@ public class MainActivity extends AppCompatActivity {
     }
     public boolean checkForWin(int row, int column, boolean[][] currentState) {
         boolean win = false;
-       if(turnCounter>4) {
-           win = checkRow(row, currentState);
-           if (!win)
-               win = checkColumn(column, currentState);
-           if (!win)
-               win = checkDiagonal(currentState);
-       }
+        if(turnCounter>4) {
+            win = checkRow(row, currentState);
+            if (!win){win = checkColumn(column, currentState);}
+            if (!win){win = checkDiagonal(currentState);}
+        }
         return win;
     }
     public boolean checkRow(int row, boolean[][] currentState) {
         boolean win = false;
         for (int i = 0; i < 3; i++) {
-            if (!currentState[row][i])
-                break;
-            if (i == 2)
-                win = true;
+            if (!currentState[row][i]){break;}
+            if (i == 2){win = true;}
         }
         return win;
     }
     public boolean checkColumn(int column, boolean[][] currentState) {
         boolean win = false;
         for (int i = 0; i < 3; i++) {
-            if (!currentState[i][column])
-                break;
-            if (i == 2)
-                win = true;
+            if (!currentState[i][column]){break;}
+            if (i == 2){win = true;}
         }
         return win;
     }
