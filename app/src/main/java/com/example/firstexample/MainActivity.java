@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 String name = "main_" + i + j + "_ibtn";
                 int id = getResources().getIdentifier(name, "id", getPackageName());
                 imageButtons[i][j] = findViewById(id);
-                imageButtons[i][j].setImageResource(R.drawable.firstpic);
+                imageButtons[i][j].setImageResource(R.drawable.empty);
                 int row = i;
                 int column = j;
                 imageButtons[i][j].setOnClickListener(new View.OnClickListener() {
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        imageButtons[i][j].setImageResource(R.drawable.firstpic);
+                        imageButtons[i][j].setImageResource(R.drawable.empty);
                         if (isX[i][j]) {
                             isX[i][j] = false;
                         } else if (isO[i][j]) {
