@@ -26,19 +26,17 @@
             android:id="@+id/imageView"
             android:layout_width="379dp"
             android:layout_height="398dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="110dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/main_title_iv"
+            app:layout_constraintStart_toStartOf="@+id/main_title_iv"
             app:layout_constraintTop_toBottomOf="@+id/main_title_iv"
-            app:srcCompat="@drawable/back" />
+            app:srcCompat="@drawable/cropedgrid1" />
 
         <ImageButton
             android:id="@+id/main_10_ibtn"
             android:layout_width="87dp"
             android:layout_height="84dp"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="38dp"
             app:layout_constraintEnd_toEndOf="@+id/main_00_ibtn"
             app:layout_constraintStart_toStartOf="@+id/main_00_ibtn"
             app:layout_constraintTop_toBottomOf="@+id/main_00_ibtn"
@@ -62,7 +60,7 @@
             android:layout_width="88dp"
             android:layout_height="84dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="150dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_title_iv"
             app:srcCompat="@drawable/firstpic" />
@@ -135,10 +133,11 @@
             android:id="@+id/main_win0_iv"
             android:layout_width="375dp"
             android:layout_height="388dp"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="122dp"
+            app:layout_constraintEnd_toEndOf="@+id/main_title_iv"
+            app:layout_constraintStart_toStartOf="@+id/main_title_iv"
             app:layout_constraintTop_toBottomOf="@+id/main_title_iv"
-            app:srcCompat="@drawable/empty"
-            tools:layout_editor_absoluteX="19dp" />
+            app:srcCompat="@drawable/empty" />
 
         <ImageView
             android:id="@+id/main_title_iv"
