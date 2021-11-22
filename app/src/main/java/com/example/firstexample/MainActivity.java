@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                             turnCounter++;
                             imageButtons[row][column].setImageResource(R.drawable.x);//change pic to 'X'
                             isX[row][column] = true;
-                            if (checkForWin(row,column,isX)==true) {
+                            if (checkForWin(row,column,isX)) {
                                 turnDecider.setImageResource(R.drawable.xwin);
                                 turn = 2; //do not allow any more presses
                             } else {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                             turnCounter++;
                             imageButtons[row][column].setImageResource(R.drawable.o);//change pic to 'O'
                             isO[row][column] = true;
-                            if (checkForWin(row,column,isO)==true) {
+                            if (checkForWin(row,column,isO)) {
                                 turnDecider.setImageResource(R.drawable.owin);
                                 turn = 2;//do not allow any more presses
                             } else {
@@ -81,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
                         imageButtons[i][j].setImageResource(R.drawable.firstpic);
-                        if (isX[i][j] == true) {
+                        if (isX[i][j]) {
                             isX[i][j] = false;
-                        } else if (isO[i][j] == true) {
+                        } else if (isO[i][j]) {
                             isO[i][j] = false;
                         }
                     }
@@ -140,12 +140,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public boolean checkDiagonal(boolean[][] currentState) {
         boolean win = false;
-        if (currentState[1][1]==true){
-            if( (currentState[0][0]==true && currentState[2][2]==true) ){
+        if (currentState[1][1]){
+            if( currentState[0][0] && currentState[2][2] ){
                 winIv.setImageResource(R.drawable.mark1);
                 win=true;
             }
-            else if(currentState[0][2]==true && currentState[2][0]==true) {
+            else if( currentState[0][2] && currentState[2][0] ) {
                 winIv.setImageResource(R.drawable.mark2);
                 win = true;
             }
