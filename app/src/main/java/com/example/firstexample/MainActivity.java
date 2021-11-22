@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Tic Tac Toe");
         Button resetbtn = findViewById(R.id.main_reset_btn);
         turnDecider = findViewById(R.id.main_title_iv);
         turnDecider.setImageResource(R.drawable.xplay);
