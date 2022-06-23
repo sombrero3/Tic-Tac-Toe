@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Tic Tac Toe");
-        Button resetbtn = findViewById(R.id.main_reset_btn);
+        Button resetBtn = findViewById(R.id.main_reset_btn);
         turnDecider = findViewById(R.id.main_title_iv);
         turnDecider.setImageResource(R.drawable.xplay);
         imageButtons = new ImageButton[3][3];
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-        resetbtn.setOnClickListener(new View.OnClickListener() {
+        resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < 3; i++) {
