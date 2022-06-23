@@ -14,4 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/caveat_regular</item>
     </style>
+    <style name="MyButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/reset_btn_design</item>
+    </style>
 </resources>
