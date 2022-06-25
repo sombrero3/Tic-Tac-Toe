@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 String name = "main_" + i + j + "_ibtn";
                 int id = getResources().getIdentifier(name, "id", getPackageName());
                 imageButtons[i][j] = findViewById(id);
+                imageButtons[i][j].setBackgroundDrawable(null);
                 imageButtons[i][j].setImageResource(R.drawable.empty);
                 int row = i;
                 int column = j;
