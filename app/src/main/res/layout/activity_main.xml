@@ -13,8 +13,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#C2E1CA">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,17 +24,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="44dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/reset_btn_design"
+                android:background="@drawable/button_black_and_white"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
                 android:text="Reset"
-                android:textColor="@color/purple_500"
-                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="32sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/main_win0_iv"
-                app:layout_constraintStart_toStartOf="@+id/main_win0_iv"
-                app:layout_constraintTop_toBottomOf="@+id/main_win0_iv" />
+                app:layout_constraintStart_toStartOf="@+id/main_win0_iv" />
 
             <ImageView
                 android:id="@+id/main_win0_iv"
@@ -52,11 +53,11 @@
 
             <ImageView
                 android:id="@+id/grid_iv"
-                android:layout_width="0dp"
+                android:layout_width="380dp"
                 android:layout_height="398dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="65dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/main_title_iv"
@@ -169,11 +170,22 @@
                 android:id="@+id/main_title_iv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#504250"
+                android:layout_marginTop="32dp"
+                android:background="@color/grey_300"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/xplay" />
+
+            <TextView
+                android:id="@+id/background_tv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#504250"
+                app:layout_constraintBottom_toTopOf="@+id/main_title_iv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

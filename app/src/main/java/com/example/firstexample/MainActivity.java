@@ -3,6 +3,7 @@ package com.example.firstexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
     int turn, turnCounter;
     boolean[][] isX,isO;
     ImageButton[][] imageButtons;
-    ImageView turnDecider;
-    ImageView winIv;
+    ImageView turnDecider,winIv;
+    TextView backgroundTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Tic Tac Toe");
         Button resetBtn = findViewById(R.id.main_reset_btn);
+        backgroundTv = findViewById(R.id.background_tv);
         turnDecider = findViewById(R.id.main_title_iv);
         turnDecider.setImageResource(R.drawable.xplay);
         imageButtons = new ImageButton[3][3];
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                             imageButtons[row][column].setImageResource(R.drawable.x);//change pic to 'X'
                             isX[row][column] = true;
                             if (checkForWin(row,column,isX)) {
+                                backgroundTv.setBackgroundColor(Color.parseColor("#FB132F"));
+                                turnDecider.setBackgroundColor(Color.parseColor("#FB132F"));
                                 turnDecider.setImageResource(R.drawable.xwin);
                                 turn = 2; //do not allow any more presses
                             } else {
@@ -60,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
                             imageButtons[row][column].setImageResource(R.drawable.o);//change pic to 'O'
                             isO[row][column] = true;
                             if (checkForWin(row,column,isO)) {
+                                backgroundTv.setBackgroundColor(Color.parseColor("#6517F6"));
+                                turnDecider.setBackgroundColor(Color.parseColor("#6517F6"));
                                 turnDecider.setImageResource(R.drawable.owin);
                                 turn = 2;//do not allow any more presses
                             } else {
@@ -89,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+                backgroundTv.setBackgroundColor(Color.parseColor("#504250"));
+                turnDecider.setBackgroundColor(Color.parseColor("#504250"));
                 turnDecider.setImageResource(R.drawable.xplay);
                 turn = 0;
                 turnCounter = 0;

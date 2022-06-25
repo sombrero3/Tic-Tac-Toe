@@ -10,4 +10,10 @@
     <color name="green">#9AFF8A</color>
     <color name="pink">#FB34F1</color>
     <color name="grey">#373636</color>
+    <color name="green_200">#C2E1CA</color>
+    <color name="grey_300">#504250</color>
+    <color name="purple_300">#6517F6</color>
+    <color name="red_300">#FB132F</color>
+
+
 </resources>
