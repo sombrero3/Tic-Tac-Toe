@@ -3,6 +3,7 @@ package com.example.firstexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,18 +12,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    int turn, turnCounter;
+    int turn, turnCounter,xWinCounter=0,oWinCounter=0,drawResultsCounter=0;
     boolean[][] isX,isO;
     ImageButton[][] imageButtons;
-    ImageView turnDecider;
-    ImageView winIv;
-
+    ImageView turnDecider,winIv;
+    TextView backgroundTv,xNumOfWinsTv,oNumOfWinsTv,numOfDrawsTv;
+    Button resetBtn,clearBoardBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Tic Tac Toe");
-        Button resetBtn = findViewById(R.id.main_reset_btn);
+        resetBtn = findViewById(R.id.main_reset_btn);
+        backgroundTv = findViewById(R.id.background_tv);
+        xNumOfWinsTv = findViewById(R.id.main_x_score_tv);
+        oNumOfWinsTv = findViewById(R.id.main_o_score_tv);
+        numOfDrawsTv = findViewById(R.id.main_draws_tv);
+        clearBoardBtn = findViewById(R.id.main_clear_board_btn);
         turnDecider = findViewById(R.id.main_title_iv);
         turnDecider.setImageResource(R.drawable.xplay);
         imageButtons = new ImageButton[3][3];
@@ -44,12 +50,16 @@ public class MainActivity extends AppCompatActivity {
                 imageButtons[i][j].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (turn == 0 && !isX[row][column] && !isO[row][column]) {//X->turn to play and ibtn wasn't pressed before
+                        if (turn == 0 && !isX[row][column] && !isO[row][column]) {//X->turn to play and iBtn wasn't pressed before
                             turnCounter++;
                             imageButtons[row][column].setImageResource(R.drawable.x);//change pic to 'X'
                             isX[row][column] = true;
                             if (checkForWin(row,column,isX)) {
+                                backgroundTv.setBackgroundColor(Color.parseColor("#FB132F"));
+                                turnDecider.setBackgroundColor(Color.parseColor("#FB132F"));
                                 turnDecider.setImageResource(R.drawable.xwin);
+                                xWinCounter++;
+                                clearBoardBtn.setVisibility(View.VISIBLE);
                                 turn = 2; //do not allow any more presses
                             } else {
                                 turn = 1; // 'O' turn
@@ -60,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
                             imageButtons[row][column].setImageResource(R.drawable.o);//change pic to 'O'
                             isO[row][column] = true;
                             if (checkForWin(row,column,isO)) {
+                                backgroundTv.setBackgroundColor(Color.parseColor("#6517F6"));
+                                turnDecider.setBackgroundColor(Color.parseColor("#6517F6"));
                                 turnDecider.setImageResource(R.drawable.owin);
+                                oWinCounter++;
+                                clearBoardBtn.setVisibility(View.VISIBLE);
                                 turn = 2;//do not allow any more presses
                             } else {
                                 turn = 0;//'X' turn
@@ -69,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         if (turn != 2 && turnCounter == 9) {
                             turnDecider.setImageResource(R.drawable.nowin);
+                            drawResultsCounter++;
+                            clearBoardBtn.setVisibility(View.VISIBLE);
                             turn = 2;
                         }
                     }
@@ -76,26 +92,40 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-        resetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
-                        imageButtons[i][j].setImageResource(R.drawable.empty);
-                        if (isX[i][j]) {
-                            isX[i][j] = false;
-                        } else if (isO[i][j]) {
-                            isO[i][j] = false;
-                        }
-                    }
-                }
-                turnDecider.setImageResource(R.drawable.xplay);
-                turn = 0;
-                turnCounter = 0;
-                winIv.setImageResource(R.drawable.empty);
-            }
+        resetBtn.setOnClickListener(v -> {
+            xWinCounter=0;
+            oWinCounter=0;
+            drawResultsCounter=0;
+            ClearBoard();
+        });
+        clearBoardBtn.setOnClickListener(view -> {
+            ClearBoard();
+            clearBoardBtn.setVisibility(View.GONE);
         });
     }
+
+    public void ClearBoard(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                imageButtons[i][j].setImageResource(R.drawable.empty);
+                if (isX[i][j]) {
+                    isX[i][j] = false;
+                } else if (isO[i][j]) {
+                    isO[i][j] = false;
+                }
+            }
+        }
+        backgroundTv.setBackgroundColor(Color.parseColor("#504250"));
+        turnDecider.setBackgroundColor(Color.parseColor("#504250"));
+        turnDecider.setImageResource(R.drawable.xplay);
+        turn = 0;
+        turnCounter = 0;
+        winIv.setImageResource(R.drawable.empty);
+        xNumOfWinsTv.setText("X Wins: "+ xWinCounter+" ");
+        oNumOfWinsTv.setText("O Wins: "+ oWinCounter+" ");
+        numOfDrawsTv.setText("Draws: "+ drawResultsCounter+" ");
+    }
+
     public boolean checkForWin(int row, int column, boolean[][] currentState) {
         boolean win = false;
         if(turnCounter>4) {
