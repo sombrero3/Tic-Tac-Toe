@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView turnDecider,winIv;
     TextView backgroundTv,xNumOfWinsTv,oNumOfWinsTv,numOfDrawsTv;
     Button resetBtn,clearBoardBtn;
+    Animation leftAnim,rightAnim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,11 +33,19 @@ public class MainActivity extends AppCompatActivity {
         numOfDrawsTv = findViewById(R.id.main_draws_tv);
         clearBoardBtn = findViewById(R.id.main_clear_board_btn);
         turnDecider = findViewById(R.id.main_title_iv);
+        winIv = findViewById(R.id.main_win0_iv);
         turnDecider.setImageResource(R.drawable.xplay);
+
+        leftAnim = AnimationUtils.loadAnimation(this,R.anim.left_animation);
+        rightAnim = AnimationUtils.loadAnimation(this,R.anim.right_animation);
+        xNumOfWinsTv.setAnimation(rightAnim);
+        oNumOfWinsTv.setAnimation(rightAnim);
+        numOfDrawsTv.setAnimation(rightAnim);
+        resetBtn.setAnimation(rightAnim);
+
         imageButtons = new ImageButton[3][3];
         isX = new boolean[3][3];
         isO = new boolean[3][3];
-        winIv = findViewById(R.id.main_win0_iv);
         turn = 0; //0-> X turn to play , 1-> O turn to play, 2->game over (some one won or draw)
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -97,10 +108,10 @@ public class MainActivity extends AppCompatActivity {
             oWinCounter=0;
             drawResultsCounter=0;
             ClearBoard();
+
         });
         clearBoardBtn.setOnClickListener(view -> {
             ClearBoard();
-            clearBoardBtn.setVisibility(View.GONE);
         });
     }
 
@@ -124,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         xNumOfWinsTv.setText("X Wins: "+ xWinCounter+" ");
         oNumOfWinsTv.setText("O Wins: "+ oWinCounter+" ");
         numOfDrawsTv.setText("Draws: "+ drawResultsCounter+" ");
+        clearBoardBtn.setVisibility(View.GONE);
     }
 
     public boolean checkForWin(int row, int column, boolean[][] currentState) {
